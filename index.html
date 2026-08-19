@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple · Vercel</title>
+  <!-- A clean, minimal style that works everywhere -->
+  <style>
+    /* reset & base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #fafafa;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem;
+      color: #1e1e2a;
+    }
+
+    .card {
+      max-width: 700px;
+      width: 100%;
+      background: white;
+      border-radius: 2rem;
+      padding: 3rem 2.5rem;
+      box-shadow: 0 20px 40px -12px rgba(0,0,0,0.1), 0 4px 18px rgba(0,0,0,0.02);
+      transition: transform 0.2s ease;
+      border: 1px solid rgba(0,0,0,0.02);
+    }
+
+    .card:hover {
+      transform: scale(1.005);
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(145deg, #0a0a0f 0%, #2d2d44 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+      line-height: 1.1;
+    }
+
+    .subhead {
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: #4a4a60;
+      margin-bottom: 2rem;
+      border-left: 4px solid #8b8bf7;
+      padding-left: 1rem;
+      background: #f4f4fc;
+      border-radius: 0 8px 8px 0;
+      padding: 0.75rem 1.25rem;
+      display: inline-block;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #000;
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.25rem 0.9rem;
+      border-radius: 40px;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      background: #1a1a2e;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem 1.5rem;
+      margin: 2.5rem 0 2rem;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-size: 1rem;
+      padding: 0.5rem 0.75rem;
+      background: #f6f6fc;
+      border-radius: 60px;
+      padding-right: 1.2rem;
+      transition: background 0.15s;
+    }
+
+    .feature-item:hover {
+      background: #ededf9;
+    }
+
+    .feature-item span {
+      background: white;
+      border-radius: 40px;
+      padding: 0.2rem 0.7rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #2d2d5e;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.02);
+    }
+
+    .icon {
+      font-size: 1.4rem;
+      line-height: 1;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2rem;
+      border-top: 1px solid #ececf5;
+      padding-top: 2rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #f0f0f8;
+      padding: 0.7rem 1.8rem;
+      border-radius: 60px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: #1d1d2b;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      border: 1px solid transparent;
+      gap: 0.5rem;
+    }
+
+    .btn-primary {
+      background: #0a0a14;
+      color: white;
+      box-shadow: 0 6px 14px rgba(10, 10, 20, 0.15);
+    }
+
+    .btn-primary:hover {
+      background: #1d1d38;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 20px -8px rgba(0,0,0,0.2);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid #d0d0e0;
+    }
+
+    .btn-outline:hover {
+      background: #f0f0fa;
+      border-color: #b0b0cc;
+    }
+
+    .footer-note {
+      margin-top: 2.2rem;
+      font-size: 0.8rem;
+      color: #6f6f88;
+      text-align: center;
+      letter-spacing: 0.2px;
+    }
+
+    .footer-note a {
+      color: #3a3a5a;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px dotted #b0b0cc;
+    }
+
+    .footer-note a:hover {
+      color: #000;
+      border-bottom-color: #000;
+    }
+
+    /* responsive */
+    @media (max-width: 550px) {
+      .card {
+        padding: 2rem 1.5rem;
+      }
+      h1 {
+        font-size: 2.2rem;
+      }
+      .feature-grid {
+        grid-template-columns: 1fr;
+        gap: 0.7rem;
+      }
+      .btn-group {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .btn {
+        justify-content: center;
+      }
+    }
+
+    /* small vercel "flair" */
+    .vercel-credit {
+      margin-top: 2.5rem;
+      font-size: 0.7rem;
+      opacity: 0.5;
+      letter-spacing: 0.3px;
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      color: #3d3d5a;
+    }
+
+    .vercel-credit svg {
+      width: 14px;
+      height: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card" role="main">
+    <!-- small badge -->
+    <div class="badge">▲ ready for vercel</div>
+
+    <h1>simple<br>static html</h1>
+    <div class="subhead">deploy in seconds · zero config</div>
+
+    <!-- feature list: typical vercel-friendly items -->
+    <div class="feature-grid">
+      <div class="feature-item">
+        <span class="icon">⚡</span> edge ready
+        <span>global</span>
+      </div>
+      <div class="feature-item">
+        <span class="icon">📦</span> no build
+        <span>html</span>
+      </div>
+      <div class="feature-item">
+        <span class="icon">🔗</span> auto deploy
+        <span>git</span>
+      </div>
+      <div class="feature-item">
+        <span class="icon">🖥️</span> preview
+        <span>instant</span>
+      </div>
+    </div>
+
+    <!-- action buttons -->
+    <div class="btn-group">
+      <a href="#" class="btn btn-primary" onclick="alert('✨ ready for Vercel – just push!'); return false;">
+        <span>🚀</span> Deploy now
+      </a>
+      <a href="#" class="btn btn-outline" onclick="alert('📄 this is a static page – works perfectly on Vercel.'); return false;">
+        <span>📋</span> about
+      </a>
+    </div>
+
+    <!-- tiny footer with vercel reference -->
+    <div class="footer-note">
+      <span>✦</span> served by <a href="#" onclick="event.preventDefault()">Vercel</a> · pure HTML + CSS
+    </div>
+  </div>
+
+  <!-- just a little vercel badge style (no external assets) -->
+  <div class="vercel-credit">
+    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2L2 20h20L12 2z" fill="currentColor"/>
+    </svg>
+    <span>Vercel · simple static</span>
+  </div>
+
+  <!-- minimal interactivity: click on card shows a tiny message (optional) -->
+  <script>
+    (function() {
+      // just a tiny console greeting – shows that js works (optional)
+      console.log('✅ Simple HTML ready for Vercel deployment.');
+      // add a tiny easter egg: double click on h1 shows a message
+      const title = document.querySelector('h1');
+      if (title) {
+        title.addEventListener('dblclick', function(e) {
+          alert('👋 double-click! this page is 100% static, but you can add any JS you like.');
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
